@@ -37,31 +37,27 @@ Estado	Símbolo leído	Símbolo escrito	       Mov. 	Estado sig.
             if pos >= len(tape): tape.append(blank)
         st = s1
 
-'''
-print("Maquina de turing a partir de un Automata finito deterministico")
-entrada1 = input("Ingrese los simbolos en binario: ")
-#se puede cambiar las reglas de transicion para otra maquina de turing
-turing_M (state = 'p', #estado inicial de la maquina de turing
-              blank = 'b', #simbolo blanco de el alfabeto dela cinta
-              tape = list(entrada1),#inserta los elementos en la cinta
-              final = 'q',  #estado valido y/o final
-              rules = map(tuple,#reglas de transicion
-                          [
-                          "p 1 x right p".split(),
-                          "p 0 0 right p".split(),
-                          "p b b right q".split(),
-                          ]   
-                         )
-             )    
-'''
 
-print("----------------Maquina de turing: Incremento-------------------")
-entrada2 = input("Ingrese los simbolos en binario: ")
-turing_M (state = 's1', #estado inicial de la maquina de turing
-              blank = '0', #simbolo blanco de el alfabeto dela cinta
-              tape = list(entrada2),#inserta los elementos en la cinta
-              final = 's6',  #estado valido y/o final
-              rules = map(tuple,#reglas de transicion
+opcion = 0
+while opcion != 5:
+    print("\n----------------------MÁQUINAS DE TURING----------------------")
+    print("\nBIENVENIDO, SELECCIONE LA MÁQUINA DE TURING QUE DESEE EJECUTAR")
+    print("\n1.-COPIA LOS 1'S INGRESADOS Y LOS COLOCA DESPUÉS DE UN O\n"
+         +"2.-CALCULA EL SUCESOR DE UN NÚMERO BINARIO\n"
+         +"3.-CALCULA LA SUMA DE DOS NÚMEROS\n"
+         +"4.-INTEGRANTES DEL EQUIPO\n"
+         +"5.-SALIR")
+    opcion = int(input("Ingresa una opción: "))
+
+
+    if opcion == 1:
+        print("COPIA LOS 1'S INGRESADOS Y LOS COLOCA DESPUÉS DE UN O")
+        entrada = input("Ingrese los simbolos: ")
+        turing_M (state = 's1', #estado inicial de la maquina de turing
+                  blank = '0', #simbolo blanco de el alfabeto dela cinta
+                  tape = list(entrada),#inserta los elementos en la cinta
+                  final = 's6',  #estado valido y/o final
+                  rules = map(tuple,#reglas de transicion
                           [
                           "s1 1 0 right s2".split(),
                           "s2 1 1 right s2".split(),
@@ -74,4 +70,54 @@ turing_M (state = 's1', #estado inicial de la maquina de turing
                           "s5 0 1 right s1".split(),
                           ]   
                          )
-             )  
+             ) 
+    
+    elif opcion == 2:
+        print("CALCULA EL NúMERO CONSECUTIVO DE UN NUMERO DADO EN BINARIO")
+        entrada2 = input("Ingrese el número binario: ")
+        turing_M (state = 'q0', #estado inicial de la maquina de turing
+                  blank = 'B', #simbolo blanco de el alfabeto dela cinta
+                  tape = list(entrada2),#inserta los elementos en la cinta
+                  final = 'q2',  #estado valido y/o final
+                  rules = map(tuple,#reglas de transicion
+                          [
+                          "q0 0 0 right q0".split(),
+                          "q0 1 1 right q0".split(),
+                          "q0 B B left q1".split(),
+                          "q1 0 1 right q2".split(),
+                          "q1 1 0 left q1".split(),
+                          "q1 0 1 left q2".split(),
+                          "q1 B 1 left q2".split(),
+                          ]   
+                         )
+             ) 
+
+    elif opcion == 3:
+        print("CALCULA LA SUMA DE DOS NÚMEROS")
+        entrada3 = input("Ingrese la cadena: ")
+        turing_M (state = 'q0', #estado inicial de la maquina de turing
+                  blank = 'B', #simbolo blanco de el alfabeto dela cinta
+                  tape = list(entrada3),#inserta los elementos en la cinta
+                  final = 'q4',  #estado valido y/o final
+                  rules = map(tuple,#reglas de transicion
+                          [
+                          "q0 1 1 right q1".split(),
+                          "q1 1 1 right q1".split(),
+                          "q1 0 1 right q2".split(),
+                          "q2 1 1 right q2".split(),
+                          "q2 B B left q3".split(),
+                          "q3 1 B right q4".split(),
+                          ]   
+                         )
+             )
+
+    elif opcion == 4:
+        print("\nPrograma elaborado por:"+"\n"
+        +"<<Mis Oy Cristina de Jesus>>"+"\n"
+        +"<<Poot Can Gener Emmanuel>>"+"\n"
+        +"<<Uicab Balam Nanci Arai>>")
+
+    elif opcion == 5:
+        print("¡Finalizado con exito!")
+    else:
+        print("\n¡¡¡La opción seleccionada es incorrecta!!!")  
